@@ -1,0 +1,12 @@
+[
+  {
+    "Dept_ID": 1,
+    "emp_name_max_salary": "Prasad",
+    "emp_name_min_salary": "Siva"
+  },
+  {
+    "Dept_ID": 2,
+    "emp_name_max_salary": "Ravi",
+    "emp_name_min_salary": "Sai"
+  }
+]

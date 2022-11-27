@@ -1,0 +1,39 @@
+Banking System
+Bank
+    - id
+    - bank_name
+    - address
+Loans
+    - id
+    - amount
+    - bank_id (foreign key)
+Accounts
+    - id
+    - acc_no
+    - acc_type (savings, current)
+    - balance
+    - bank_id (foreign key)
+Customers
+    - id
+    - first_name
+    - last_name
+    - phone_no
+    - email_addr
+    - address
+    - acc_id (foreign key)
+    - loan_id (foreign key)
+    - join_dt
+Cards
+    - id
+    - card_type (debit by default, credit)
+    - acc_id (foreign key)
+Services **
+    - id
+    - serv_type (account, loan, card)
+    - status (active, inactive, closed)
+Transactions **
+    - id
+    - tran_dt
+    - tran_amt
+    - cust_id (foreign key)
+    - acc_id (foreign key)

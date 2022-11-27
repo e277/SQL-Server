@@ -1,0 +1,33 @@
+USE SQL_Puzzles_DB;
+
+DROP TABLE IF EXISTS PrPts;
+CREATE TABLE PrPts
+(
+    Product_ID INT,
+    Effective_Date VARCHAR(25),
+    Unit_Price VARCHAR(25)
+);
+INSERT INTO PrPts
+VALUES
+    (1001, '1/1/2018', '$1.99');
+INSERT INTO PrPts
+VALUES
+    (1001, '5/17/2018', '$2.99');
+INSERT INTO PrPts
+VALUES
+    (1001, '6/14/2018', '$3.99');
+INSERT INTO PrPts
+VALUES
+    (2002, '2/12/2018', '$12.99');
+INSERT INTO PrPts
+VALUES
+    (2002, '3/1/2018', '$17.99');
+INSERT INTO PrPts
+VALUES
+    (2002, '4/19/2018', '$20.99');
+
+-- Queries
+SELECT *
+FROM PrPts;
+
+

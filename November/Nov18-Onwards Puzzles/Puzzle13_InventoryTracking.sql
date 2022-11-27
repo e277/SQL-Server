@@ -1,0 +1,20 @@
+USE SQL_Puzzles_DB;
+
+DROP TABLE IF EXISTS InvTrk;
+CREATE TABLE InvTrk (
+	Date VARCHAR(25),
+	Quantity_Adjustment INT
+)
+INSERT INTO InvTrk VALUES('7/1/2018', 100);
+INSERT INTO InvTrk VALUES('7/2/2018', 75);
+INSERT INTO InvTrk VALUES('7/3/2018', -150);
+INSERT INTO InvTrk VALUES('7/4/2018', 50);
+INSERT INTO InvTrk VALUES('7/5/2018', -100); -- Would of to use -50 to 25
+
+
+--Queries
+SELECT * FROM InvTrk;
+
+SELECT Date, Quantity_Adjustment,
+	SUM(Quantity_Adjustment) OVER(ORDER BY Date ROWS BETWEEN UNBOUNDED PRECEDING AND 0 PRECEDING) Inventory
+FROM InvTrk;
