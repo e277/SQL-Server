@@ -26,3 +26,10 @@ VALUES
 SELECT *
 FROM Future;
 
+
+-- solve using declarative approach to get the following output:
+-- Start_Date	End_Date
+-- 1/12/2018 1/19/2018
+-- 1/10/2018 1/11/2018
+-- 1/1/2018 1/9/2018
+
