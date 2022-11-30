@@ -39,21 +39,25 @@ VALUES
 SELECT *
 FROM FirstLast;
 
--- Write an SQL statement that determines the most and least experienced Spaceman ID by their job description.
--- group the most and least experienced spaceman by job description
--- print as Job_Description, Most_Exp_Spaceman_ID, , Least_Exp_Spaceman_ID
--- order by job description
+
+-- Group by Job_Description, find the highest mission count as Most_Experienced and the lowest mission count as Least_Experienced
+-- print Job_Description, Most_Experienced by Spaceman_ID and Least_Experienced by Spaceman_ID
 WITH
     CTE
     AS
     (
-        SELECT Job_Description, Spaceman_ID, Mission_Count,
-            MAX(Mission_Count) OVER (PARTITION BY Job_Description) AS Most_Exp_Mission_Count,
-            MIN(Mission_Count) OVER (PARTITION BY Job_Description) AS Least_Exp_Mission_Count
+        SELECT Job_Description, Mission_Count,
+            MAX(Mission_Count) OVER (PARTITION BY Job_Description) AS Most_Experienced,
+            MIN(Mission_Count) OVER (PARTITION BY Job_Description) AS Least_Experienced
         FROM FirstLast
     )
 SELECT DISTINCT Job_Description,
-    MAX(Spaceman_ID) OVER (PARTITION BY Job_Description, Most_Exp_Mission_Count) AS [Most Experienced],
-    MIN(Spaceman_ID) OVER (PARTITION BY Job_Description, Least_Exp_Mission_Count) AS [Least Experienced]
+    (SELECT Spaceman_ID
+    FROM FirstLast
+    WHERE Job_Description = CTE.Job_Description
+        AND Mission_Count = CTE.Most_Experienced) AS Most_Experienced,
+    (SELECT Spaceman_ID
+    FROM FirstLast
+    WHERE Job_Description = CTE.Job_Description
+        AND Mission_Count = CTE.Least_Experienced) AS Least_Experienced
 FROM CTE
-ORDER BY Job_Description;
