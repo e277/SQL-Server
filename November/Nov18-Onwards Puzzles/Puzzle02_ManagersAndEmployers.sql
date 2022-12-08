@@ -25,16 +25,16 @@ SELECT *
 FROM Mngs_Emps;
 
 -- Soln 1
--- SELECT 
--- 	*,
--- 	DENSE_RANK() OVER (ORDER BY Manager_ID)
--- 	-
--- 	SUM(CASE
--- 			WHEN Manager_ID IS NULL THEN 1
--- 			ELSE 0 END
--- 	) OVER (ORDER BY Employee_ID) Depth 
--- FROM 
--- 	Mngs_Emps
+SELECT
+	*,
+	DENSE_RANK() OVER (ORDER BY Manager_ID)
+	-
+	SUM(CASE
+			WHEN Manager_ID IS NULL THEN 1
+			ELSE 0 END
+	) OVER (ORDER BY Employee_ID) Depth
+FROM
+	Mngs_Emps
 
 
 -- Soln 2
