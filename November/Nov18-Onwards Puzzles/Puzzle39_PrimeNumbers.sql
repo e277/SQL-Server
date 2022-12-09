@@ -22,27 +22,15 @@ VALUES
 SELECT *
 FROM PrimeNumbers;
 
--- determine if a number is prime
-WITH
-	PrimeNumbersCTE
-	AS
-	(
-		SELECT IntegerValue
-		FROM PrimeNumbers
-		WHERE IntegerValue > 1
-			AND IntegerValue % 2 = 1
-	)
--- delete all the number that are not prime
-DELETE
-FROM PrimeNumbers
-WHERE IntegerValue NOT IN
-(
-	SELECT IntegerValue
-FROM PrimeNumbersCTE
-WHERE IntegerValue + 2 <= 10
-);
-
-
-SELECT *
-FROM PrimeNumbers;
+-- soln `
+SELECT IntegerValue
+FROM (SELECT
+		x.IntegerValue,
+		x1.IntegerValue AS divisor,
+		x.IntegerValue % x1.IntegerValue AS remaindr
+	FROM PrimeNumbers x
+		JOIN PrimeNumbers x1 ON x1.IntegerValue <= x.IntegerValue
+     ) t
+GROUP BY IntegerValue
+HAVING SUM(CASE WHEN remaindr = 0 THEN 1 ELSE 0 END) = 2
 
