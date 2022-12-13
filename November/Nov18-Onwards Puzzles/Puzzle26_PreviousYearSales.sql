@@ -43,9 +43,9 @@ WITH
     )
 -- find
 SELECT
-    SUM(CASE WHEN Year_k = 2018 THEN Amount END) AS [2018],
-    SUM(CASE WHEN Year_k = 2017 THEN Amount END) AS [2017],
-    SUM(CASE WHEN Year_k = 2016 THEN Amount END) AS [2016]
+    CONCAT('$', SUM(CASE WHEN Year_k = 2018 THEN Amount END)) AS [2018],
+    CONCAT('$', SUM(CASE WHEN Year_k = 2017 THEN Amount END)) AS [2017],
+    CONCAT('$', SUM(CASE WHEN Year_k = 2016 THEN Amount END)) AS [2016]
 FROM CTE
 WHERE RowNum <= 2
 
