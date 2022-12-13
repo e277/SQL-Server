@@ -46,6 +46,7 @@ WITH
                 INNER JOIN CTE_Salesman AS S2
                 ON S1.Arrival_City = S2.Departure_City
     )
+-- SELECT * FROM CTE_Salesman; -- Print all routes
 SELECT
     Departure_City,
     Arrival_City,
